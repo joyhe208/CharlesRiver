@@ -2,6 +2,8 @@ import folium
 import pandas as pd
 from pandas import read_html
 from flask import Flask
+import numpy as np
+from bs4 import BeautifulSoup
 
 #Extract Table from Wikipedia Page
 bridgelistdf = pd.read_html('CharlesRiverCrossings.html', header = 0, index_col = None, attrs = {'class':'wikitable'})[0]
@@ -15,6 +17,10 @@ bridgenamesdf = bridgelistdf.loc[:, 'Crossing']
 bridgenames = []
 for bridgename in bridgenamesdf:
 	bridgenames.append(bridgename)
+
+
+#bridges I've run across
+bridgesrun = ['Charlestown Bridge', 'MBTA Green Line Lechmere Viaduct', 'Longfellow Bridge', 'Harvard Bridge', 'Boston University Bridge', 'River Street Bridge', 'Western Avenue Bridge', 'John W. Weeks Bridge', 'Anderson Memorial Bridge', 'Eliot Bridge', 'Arsenal Street Bridge', 'North Beacon Street Bridge', 'Watertown Bridge', 'Cpl. Joseph U. Thompson Footbridge (new)', 'Bridge Street Bridge', 'Blue Heron Footbridge', 'Farwell Street Bridge', 'Mary T. Early Footbridge', 'Charles F. Graceffa Bridge', 'Elm Street Bridge', 'Richard Landry Park footbridge', 'Moody Street bridge', 'Gold Star Mothers Bridge', 'Footbridge from Riverside Rd., Newton to Recreation Rd., Weston', 'Riverside Park Footbridge']
 
 #isolate the coordinates
 coordinatesdf = bridgelistdf.loc[:, 'Coordinates']
@@ -43,6 +49,14 @@ if __name__ == "__main__":
 
 	#create markers
 	for i in range(len(lats)):
-		folium.Marker([lats[i], longs[i]], popup = bridgenames[i]).add_to(m)
+		pop = '<strong style="color:#967bb6;">' + bridgenames[i] + '</strong>'
+		if(bridgenames[i] in bridgesrun):
+			col = 'green'
+		else:
+			col = 'red'
+		folium.Marker([lats[i], longs[i]], popup = pop, icon = folium.Icon(color = col)).add_to(m)
 
 	m.save('charlesmap.html')
+
+
+
