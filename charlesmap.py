@@ -94,7 +94,7 @@ if __name__ == "__main__":
 			# 	image = "https:" + image
 			# 	dl_img(image, "pic" + str(i)) --> how I downloaded the images from Wikipedia very hacky wow
 
-			pophtml = pophtml + '<img src= "pic' + str(i) + '.jpg" style = "width: 100%;height: 100%;"/>'
+			pophtml = pophtml + '<img src= "bridgeimages/pic' + str(i) + '.jpg" style = "width: 100%;height: 100%;"/>'
 		else:
 			col = 'red'
 		pop = folium.Popup(html = pophtml, max_width = "300", max_height = "300")
