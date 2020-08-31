@@ -82,7 +82,7 @@ if __name__ == "__main__":
 		# image = "https://lh3.googleusercontent.com/proxy/QgxA7piVCDYQGdQtRhHPirYXtYMhE0nKZ9rgorwp_vbrNjOD0VxANOrJnQ-J8FrcirZeExC-YCETpxE4JtCMeCVyzEBRFmf3UqmI9hf1Eq2a0RLkuFcPnSU"
 		# image = "<img src =" + image + ">"
 		
-		pop = '<strong style="color:#967bb6;width=500%;height=500%">' + bridgenames[i] + '</strong><br>'
+		pophtml = '<strong style="color:#967bb6;">' + bridgenames[i] + '</strong><br>'
 
 		if(bridgenames[i] in bridgesrun):
 			col = 'green'
@@ -92,10 +92,12 @@ if __name__ == "__main__":
 			# 	image = image.replace("/thumb", "")
 			# 	image = image.split("/200px")[0]
 			# 	image = "https:" + image
-			# 	dl_img(image, "pic" + str(i))
-			pop = pop + '<img src= "pic' + str(i) + '.jpg" style = "width:500%;height:500%;"/>'
+			# 	dl_img(image, "pic" + str(i)) --> how I downloaded the images from Wikipedia very hacky wow
+
+			pophtml = pophtml + '<img src= "pic' + str(i) + '.jpg" style = "width: 100%;height: 100%;"/>'
 		else:
 			col = 'red'
+		pop = folium.Popup(html = pophtml, max_width = "300", max_height = "300")
 		folium.Marker([lats[i], longs[i]], popup = pop, icon = folium.Icon(color = col)).add_to(m)
 
 	m.save('charlesmap.html')
