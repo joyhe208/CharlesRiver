@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 from charlesimages import *
 
+#test
 #Extract Table from Wikipedia Page
 bridgelistdf = pd.read_html('CharlesRiverCrossings.html', header = 0, index_col = None, attrs = {'class':'wikitable'})[0]
 
