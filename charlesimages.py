@@ -7,6 +7,7 @@ table = soup.table
 table_rows = table.find_all('tr')
 table_rows.remove(table_rows[4])
 table_rows.remove(table_rows[0])
+#how I downloaded images from the wikipedia page. Don't need anymore because they're in the directory 
 	# for i in range(len(lats)):
 	# 	print(i)
 	# 	dividers = table_rows[i].find_all('td')
